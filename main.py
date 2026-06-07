@@ -1,12 +1,12 @@
 import random
 index = 0
-list = []
 def GRK():
+  listed = []
   #GRK stands for generate random key
   for i in range(4):
     # Generates 4 numbers
-    list.append(randint(0,9))
-  key = int("".join(map(str, list)))
+    listed.append(random.randint(0,9))
+  key = int("".join(map(str, listed)))
   # turns list into an integer and sets key to list
   return key
 # ABOVE IS FOR GENERATING THE KEY
@@ -14,13 +14,13 @@ def GRK():
 # BELOW IS TO CREATE THE SOLUTION, AND ALSO THE LOCK ON THE USER END
 
 def convert(key):
-  if len(key) != 4:
-    if len(key) > 4:
-      print(f"Key Error: Length of key is too large, input was {len(key)}")
+  if len(str(key)) != 4:
+    if len(str(key)) > 4:
+      print(f"Key Error: Length of key is too large, input was {len(str(key))}")
     else:
-      print(f"Key Error: Length of key is too small, input was {len(key)}")
+      print(f"Key Error: Length of key is too small, input was {len(str(key))}")
   else:
-    c_list = [list(map(int, str(key)))]
+    c_list = list(map(int, str(key)))
     for index in range(4):
       x = sum(c_list)
       y = c_list.pop(index)
@@ -32,12 +32,13 @@ def convert(key):
     result = int("".join(map(str, c_list)))
     return result
 
-code = grk()
-convert(code)
+def getkey(x):
+  #please note this is for decoding, do not include on user end
+  if type(x) != "<class: 'int'":
+    KeyResult = convert(x)
+    print(f"The Lock Is {str(KeyResult)}")
+  else:
+    print(f"Decode Error: Expected Key Type 'integer', got {type(x)}")
     
     
     
-    
-  
-  
-  
